@@ -6,14 +6,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.HomePage;
 import reader.ReadDataFromJson;
+import utils.ScreenRecorderUtil;
+import utils.UtilsTests;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 public class BaseTests {
 
@@ -25,20 +26,23 @@ public class BaseTests {
     protected HomePage homePage;
     protected ReadDataFromJson readDataFromJson;
 
+    UtilsTests utilsTests;
+
     @Parameters("browser")
-    @BeforeClass
-    public void setUp(String browser){
+    @BeforeClass(groups = {"regression", "smoke"})
+    public void setUp(@Optional("chrome") String browser) {
         setUpBrowser(browser);
         driver.manage().window().maximize();
         homePage = new HomePage(driver);
     }
+
     @Parameters("browser")
-    public void setUpBrowser(String browser){
-        if (browser.equalsIgnoreCase("chrome")){
+    public void setUpBrowser(@Optional("chrome") String browser) {
+        if (browser.equalsIgnoreCase("chrome")) {
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
-        }else if (browser.equalsIgnoreCase("headlessChrome")){
+        } else if (browser.equalsIgnoreCase("headlessChrome")) {
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--headless");
             driver = new ChromeDriver(chromeOptions);
@@ -49,14 +53,22 @@ public class BaseTests {
         }
     }
 
-    @BeforeMethod
-    public void goHome() throws FileNotFoundException {
+    @BeforeMethod(groups = {"regression", "smoke"})
+    public void goHome(Method method) throws Exception {
         readDataFromJson = new ReadDataFromJson();
         driver.get(dataModel().URL);
+        ScreenRecorderUtil.startRecord(method.getName());
     }
 
-    @AfterClass
-    public void tearDown(){
+    @AfterMethod(groups = {"regression", "smoke"})
+    public void afterMethod(Method method) throws Exception {
+        utilsTests = new UtilsTests(driver);
+        utilsTests.takeScreenShot(method);
+        ScreenRecorderUtil.stopRecord();
+    }
+
+    @AfterClass(groups = {"regression", "smoke"})
+    public void tearDown() {
         driver.quit();
     }
 

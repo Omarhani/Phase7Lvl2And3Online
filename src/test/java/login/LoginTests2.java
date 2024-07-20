@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class LoginTests2 extends BaseTests {
-    @Test
+    @Test(groups = "regression")
     public void testSuccessfulLogin2(){
         LoginPage loginPage = homePage.clickOnLoginLink();
         loginPage.loginFeature("omar","123");
@@ -15,7 +15,7 @@ public class LoginTests2 extends BaseTests {
         LoginPage loginPage = homePage.clickOnLoginLink();
         loginPage.loginFeature("omar","123");
     }
-    @Test
+    @Test(groups = "regression")
     public void testSuccessfulLogin24(){
         LoginPage loginPage = homePage.clickOnLoginLink();
         loginPage.loginFeature("omar","123");

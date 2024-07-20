@@ -6,7 +6,7 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTests {
 
-    @Test
+    @Test(groups = "regression")
     public void testSuccessfulLogin(){
         LoginPage loginPage = homePage.clickOnLoginLink();
         loginPage.loginFeature("omar","123");

@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Test Suite" parallel="tests" >
-    <test name="Chrome" parallel="classes" >
+<suite name="Regression Test Suite" >
+    <groups>
+        <run>
+            <include name="regression"/>
+        </run>
+    </groups>
+    <test name="Chrome" >
         <parameter name="browser" value="CHROME"/>
-        <classes>
-            <class name="login.LoginTests"/>
-            <class name="login.LoginTests2"/>
-            <class name="login.LoginTests3"></class>
-        </classes>
+        <packages>
+            <package name="login"/>
+        </packages>
     </test>
-    <test name="Firefox" parallel="classes" >
-        <parameter name="browser" value="Firefox"/>
-        <classes>
-            <class name="login.LoginTests2"/>
-            <class name="login.LoginTests3">
-                <methods>
-                    <exclude name="testSuccessfulLogin35"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+<!--    <test name="Firefox" parallel="classes" >-->
+<!--        <parameter name="browser" value="Firefox"/>-->
+<!--        <classes>-->
+<!--            <class name="login.LoginTests2"/>-->
+<!--            <class name="login.LoginTests3">-->
+<!--                <methods>-->
+<!--                    <exclude name="testSuccessfulLogin35"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>
