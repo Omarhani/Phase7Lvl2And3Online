@@ -6,5 +6,5 @@ public class DataModel {
 
     public Login Login;
 
-    public Object[][] Login1;
+
 }
