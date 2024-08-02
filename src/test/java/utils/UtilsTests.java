@@ -61,16 +61,6 @@ public class UtilsTests {
         test.info(MarkupHelper.createLabel("--------------- Steps To Reproduce ---------------", ExtentColor.TEAL));
     }
 
-    public static void myAssertEquals(String actual, String expected){
-        test.info(MarkupHelper.createLabel("--------------- ends of Steps ---------------", ExtentColor.TEAL));
 
-        test.info(MarkupHelper.createLabel("--------------- actual Result ---------------", ExtentColor.TEAL));
-        test.info(actual);
-
-        test.info(MarkupHelper.createLabel("--------------- expected Result ---------------", ExtentColor.TEAL));
-        test.info(expected);
-
-        assertEquals(actual,expected);
-    }
 
 }

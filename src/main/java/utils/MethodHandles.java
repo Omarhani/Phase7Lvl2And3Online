@@ -2,12 +2,16 @@ package utils;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.testng.Assert.*;
 
 public class MethodHandles {
 
@@ -347,5 +351,25 @@ public class MethodHandles {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].style.border = '5px solid red'", element);
     }
+
+    protected static void myAssertEquals(Object actual, Object expected){
+        test.info(MarkupHelper.createLabel("--------------- ends of Steps ---------------", ExtentColor.TEAL));
+
+        test.info(MarkupHelper.createLabel("--------------- actual Result ---------------", ExtentColor.TEAL));
+        test.info(actual.toString());
+
+        test.info(MarkupHelper.createLabel("--------------- expected Result ---------------", ExtentColor.TEAL));
+        test.info(expected.toString());
+
+        assertEquals(actual,expected);
+    }
+
+    protected static void myAssertTrue(boolean b){
+        assertTrue(b);
+    }
+    protected static void myAssertFalse(boolean b){
+        assertFalse(b);
+    }
+
 
 }
