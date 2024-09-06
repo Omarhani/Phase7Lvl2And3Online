@@ -16,7 +16,7 @@ jobs:
     - name: Regression
       uses: actions/checkout@v3
     - name: SetUp Maven
-      uses: actions/setup-mvn@v2
+      uses: actions/setup-mvn
       with:
         mvn-version: 3.9.4
     - name: Install Dependencies
