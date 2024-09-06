@@ -15,4 +15,4 @@ jobs:
 
    steps:
     - name: Regression
-      run: mvn test -Dtestng=regression
+      run: mvn -f path/to/pom.xml test-Dtestng=regression
