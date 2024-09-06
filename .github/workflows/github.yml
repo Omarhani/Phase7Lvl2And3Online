@@ -1,4 +1,4 @@
-name: Hello World
+name: Regression
 
 
 on:
@@ -14,5 +14,5 @@ jobs:
    runs-on: ubuntu-latest
 
    steps:
-    - name: Hello World
-      run: cd .. mvn clean
+    - name: Regression
+      run: mvn test-Dtestng=regression
