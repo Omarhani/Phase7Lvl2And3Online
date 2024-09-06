@@ -1,8 +1,6 @@
 name: Regression
   
-  - uses: actions/checkout@v3
-    with:
-     path: /Users/omarhany/IdeaProjects/Phase7Lvl2And3Online
+
 
 on:
   push:
