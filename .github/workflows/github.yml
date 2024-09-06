@@ -1,6 +1,4 @@
 name: Regression
-  
-
 
 on:
   push:
@@ -16,5 +14,13 @@ jobs:
 
    steps:
     - name: Regression
-      run: echo "Hello World"
+      uses: actions/checkout@v2
+    - name: SetUp Maven
+      uses: actions/setup-maven@v2
+      with:
+        mvn-version: 3.9.4
+    - name: Install Dependencies
+      run: mvn clean
+    - name: Run test
+      run: mvn test -Dtestng=regression
 
