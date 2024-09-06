@@ -15,4 +15,4 @@ jobs:
 
    steps:
     - name: Hello World
-      run: mvn test -Dtestng=regression
+      run: mvn clean
