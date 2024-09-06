@@ -10,9 +10,9 @@ on:
       - 'main'
 
 jobs:
-  hello:
+  Regression:
    runs-on: ubuntu-latest
 
    steps:
     - name: Regression
-      run: mvn test-Dtestng=regression
+      run: mvn test -Dtestng=regression
